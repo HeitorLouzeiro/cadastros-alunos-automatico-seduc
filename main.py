@@ -11,6 +11,9 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+# importando dados do arquivo leraquivo.py
+from lerarquivo import extrairDados
+
 # Chrome Options
 # https://peter.sh/experiments/chromium-command-line-switches/
 
@@ -40,47 +43,81 @@ def make_chrome_browser(*options: str) -> webdriver.Chrome:
 
     return browser
 
+# Importe a função extrairDados() aqui, se necessário
+
+
+pessoas = []
+
+print("Executando extrairDados()...")
+informacoes = extrairDados()
+
+for aluno in informacoes:
+    pessoa = {
+        "nome": aluno["coluna_2"],
+        "cpf": aluno["coluna_1"],
+        "data_nascimento": aluno["coluna_5"],
+        "sexo": aluno["sexo"],
+        "endereco": aluno["coluna_3"],
+        "bairro": aluno["coluna_4"]
+    }
+    pessoas.append(pessoa)
+
+
+def preencher_formulario(pessoas):
+    # Exibir a lista de alunos
+    for pessoa in pessoas:
+        print("Nome:", pessoa["nome"])
+        print("CPF:", pessoa["cpf"])
+        print("Data de nascimento:", pessoa["data_nascimento"])
+        print("Sexo:", pessoa["sexo"])
+        print("Endereço:", pessoa["endereco"])
+        print("Bairro:", pessoa["bairro"])
+        print("-" * 30)
+
+
+print("Executando preencher_formulario()...")
+preencher_formulario(pessoas)
 
 if __name__ == '__main__':
-    TIME_TO_SLEEP_SHORT = 3
-    TIME_TO_SLEEP_MEDIAN = 10
-    TIME_TO_SLEEP_LONG = 20
+    TIME_TO_SLEEP_SHORT = 2
+    TIME_TO_SLEEP_MEDIAN = 5
+    TIME_TO_SLEEP_LONG = 10
     # Example
     # options = '--headless', '--disable-gpu',
     options = ()
     browser = make_chrome_browser(*options)
 
-    pessoas = [
-        {
-            "nome": "NILVA GUEDES DE SOUZA",
-            "cpf": "",
-            "data_nascimento": "24/07/1992",
-            "sexo": "FEMININO",
-            "endereco": "RUA BUQUEIRĂO",
-            "bairro": "VERMELHÃO",
+    # pessoas = [
+    #     {
+    #         "nome": 'NILVA GUEDES DE SOUZA',
+    #         "cpf": "064.864.333-61",
+    #         "data_nascimento": "24/07/1992",
+    #         "sexo": "FEMININO",
+    #         "endereco": "RUA BUQUEIRĂO",
+    #         "bairro": "VERMELHÃO",
 
-            # adicione mais informações que você precise
-        },
-        {
-            "nome": "ISAQUE DIAS DO NASCIMENTO",
-            "cpf": "",
-            "sexo": "MASCULINO",
-            "data_nascimento": "15/05/1983",
-            "endereco": "RUA PROJETADA 06",
-            "bairro": "VERMELHÃO",
-            # adicione mais informações que você precise
-        },
-        {
-            "nome": "LUZIA MARIA VIEIRA DE SOUZA",
-            "cpf": "",
-            "sexo": "Feminino",
-            "data_nascimento": "13/12/1954",
-            "endereco": "RUA SĂO JOSÉ",
-            "bairro": "VERMELHÃO",
-            # adicione mais informações que você precise
-        },
+    #         # adicione mais informações que você precise
+    #     },
+    #     {
+    #         "nome": "ISAQUE DIAS DO NASCIMENTO",
+    #         "cpf": "996.382.743-87",
+    #         "sexo": "MASCULINO",
+    #         "data_nascimento": "15/05/1983",
+    #         "endereco": "RUA PROJETADA 06",
+    #         "bairro": "VERMELHÃO",
+    #         # adicione mais informações que você precise
+    #     },
+    #     {
+    #         "nome": "LUZIA MARIA VIEIRA DE SOUZA",
+    #         "cpf": "810.948.843-91",
+    #         "sexo": "Feminino",
+    #         "data_nascimento": "13/12/1954",
+    #         "endereco": "RUA SĂO JOSÉ",
+    #         "bairro": "VERMELHÃO",
+    #         # adicione mais informações que você precise
+    #     },
 
-    ]
+    # ]
 
     # Como antes
     browser.get('https://portal.seduc.pi.gov.br/#!/aluno/cadastro-finalizar')
@@ -178,8 +215,6 @@ if __name__ == '__main__':
         )
         inputCPF.send_keys(pessoa["cpf"])
 
-        sleep(TIME_TO_SLEEP_SHORT)
-
         inputCPF.send_keys(Keys.TAB)
 
         sleep(TIME_TO_SLEEP_SHORT)
@@ -199,6 +234,7 @@ if __name__ == '__main__':
             inputExistente.send_keys(Keys.ESCAPE)
             inputName.clear()
             inputCPF.clear()
+            print(f'Pulando pessoa {pessoa["nome"]}')
         except TimeoutException:
             print('CPF não cadastrado no sistema')
 
