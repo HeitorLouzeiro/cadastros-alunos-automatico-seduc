@@ -4,7 +4,7 @@ import docx
 def extrairDados():
     # Abrir o arquivo docx
     doc = docx.Document(
-        'E:/pythonProject/personalProjects/seleniumAutoCadAluno/alunos5Pessoas.docx')  # noqa
+        'E:/pythonProject/personalProjects/seleniumAutoCadAluno/arquivos/alunos2Pessoas.docx')  # noqa
 
     # Criar uma lista vazia para armazenar as strings a serem ignoradas
     ignore_list = []
@@ -28,10 +28,10 @@ def extrairDados():
                         '001.244.933-43', '045.771.003-98', '005.544.443-13',
                         '399.370.201-82', '002.917.893-23', '035.811.673-28',
                         '577.882.863-20', '600.364.213-08', '071.614.623-12',
-                        '025.761.151-79', '044.223.693-00', '725.026.141-04',
+                        '025.761.151-79', '725.026.141-04',
                         '021.671.683-73', '882.143.703-53', '055.004.371-35',
                         '493.099.601-59', '008.800.713-89', '076.330.131-09',
-                        '399.771.451-72', '584.315.431-91', '044.223.693-00',
+                        '399.771.451-72', '584.315.431-91',
                         '725.026.141-04', '021.671.683-73', '882.143.703-53',
                         '055.004.371-35', '493.099.601-59', '008.800.713-89',
                         '076.330.131-09', '399.771.451-72', '584.315.431-91',
