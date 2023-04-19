@@ -59,7 +59,7 @@ def preencher_formulario(pessoas):
         print("-" * 30)
 
 
-cpf_especifico = "064.864.333-61"
+cpf_especifico = input("Digite o CPF do aluno de onde quer fazer a busca: ")
 
 pessoas = []
 
@@ -74,7 +74,7 @@ for aluno in informacoes:
         "nome": aluno["coluna_2"],
         "cpf": aluno["coluna_1"],
         "data_nascimento": aluno["coluna_5"],
-        "sexo": aluno["sexo"],
+        "sexo": aluno["coluna_6"],
         "endereco": aluno["coluna_3"],
         "bairro": aluno["coluna_4"]
     }
@@ -105,10 +105,10 @@ def encontrarElemento(browser, tempo_de_espera, tipo_de_seletor, valor_do_seleto
 def Login():
     print('Fazendo login.')
     print(espaco)
-    # UserName = input('Digite seu Usuario: ')
-    UserName = '72776382120'
-    Senha = '72776382120'
-    # Senha = input('Digite sua senha: ')
+
+    UserName = input('Digite seu Usuario: ')
+    Senha = input('Digite sua senha: ')
+    print(espaco)
 
     inputUsuario = encontrarElemento(
         browser, TIME_TO_SLEEP_MEDIAN, By.ID, 'username')
