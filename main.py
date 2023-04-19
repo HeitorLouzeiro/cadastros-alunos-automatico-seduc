@@ -177,11 +177,12 @@ def cadastroAluno():
             inputExistente = encontrarElemento(browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[8]/md-dialog')  # noqa
 
             print('CPF já cadastrado no sistema')
+            print(espaco)
             inputExistente.send_keys(Keys.ESCAPE)
             inputName.clear()
             inputCPF.clear()
-
             print(f'Pulando pessoa {pessoa["nome"]}')
+            print(espaco)
 
             sleep(TIME_TO_SLEEP_SHORT)
         except TimeoutException:
@@ -189,7 +190,7 @@ def cadastroAluno():
             print(espaco)
             # preecheno campo data nascimento
 
-            sleep(TIME_TO_SLEEP_MEDIAN)
+            sleep(TIME_TO_SLEEP_SHORT)
             print('Preechendo Data de nascimento.')
             inputDataNasc = encontrarElemento(
                 browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[2]/div[2]/md-input-container/input')  # noqa
@@ -197,7 +198,200 @@ def cadastroAluno():
             print(espaco)
 
             print('Data de nascimento preenchida com sucesso.')
+            print(espaco)
+
             sleep(TIME_TO_SLEEP_SHORT)
+
+            # Selecionando o campo Cor/Raça
+            inputCor = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[3]/div[1]/md-select')  # noqa
+
+            inputCor.click()
+            sleep(TIME_TO_SLEEP_SHORT)
+
+            print('Selecionando a cor do aluno.')
+            print(espaco)
+            inputNaoDecla = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[8]/md-select-menu/md-content/md-option[1]')  # noqa
+            inputNaoDecla.send_keys(Keys.ENTER)
+            print('Selecionada Cor não declarada com sucesso.')
+            print(espaco)
+
+            # Selecionado option sexo do aluno
+            print('Selecionando o sexo do aluno.')
+            print(espaco)
+            inputSexo = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[3]/div[2]/md-select')
+            inputSexo.click()
+            print(inputSexo.text)
+
+            valorSexo = pessoa["sexo"].lower()
+            if valorSexo == 'masculino':
+                # selecionando Sexo Masculino
+                Sexo = encontrarElemento(
+                    browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[9]/md-select-menu/md-content/md-option[1]')  # noqa
+                print('Selecionado sexo masculino com sucesso.')
+            else:
+                # selecionando Sexo Feminino
+                Sexo = encontrarElemento(
+                    browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[9]/md-select-menu/md-content/md-option[2]')
+                print('Selecionado sexo feminino com sucesso.')
+
+            sleep(TIME_TO_SLEEP_SHORT)
+            Sexo.send_keys(Keys.ENTER)
+            sleep(TIME_TO_SLEEP_SHORT)
+            print(espaco)
+
+            # selecionando Option o Nacionalidade
+            inputNacionalidade = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[5]/div[1]/md-select')
+            inputNacionalidade.click()
+
+            print('Selecionando a nacionalidade do aluno.')
+            print(espaco)
+
+            # selecionando a nacionalidade brasileira
+            inputNaturalidadeBrasileira = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[10]/md-select-menu/md-content/md-option[1]')
+
+            print('Selecionada nacionalidade brasileira com sucesso.')
+            sleep(TIME_TO_SLEEP_SHORT)
+            inputNaturalidadeBrasileira.send_keys(Keys.ENTER)
+            print(espaco)
+
+            # selecionando option UF
+            # selecionando o Naturalidade
+            print('Selecionando o Estado do aluno.')
+            inputNaturalidade = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[5]/div[2]/md-select')  # noqa
+
+            inputNaturalidade.click()
+            print(espaco)
+
+            #  selecionando a nacionalidade piauiense
+            inputNacionalidadePiaui = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[11]/md-select-menu/md-content/md-option[19]')
+            print('Selecionada nacionalidade piauiense com sucesso.')
+            sleep(TIME_TO_SLEEP_SHORT)
+
+            inputNacionalidadePiaui.send_keys(Keys.ENTER)
+            print(espaco)
+
+            # selecionando Opcao da Cidade
+            print('Selecionando a cidade do aluno.')
+            inputCidade = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[5]/div[3]/md-select')  # noqa
+            inputCidade.click()
+            print(espaco)
+
+            # selecionando a cidade de Corrente
+            inputCidadeCorrente = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[12]/md-select-menu/md-content/md-option[65]')
+            sleep(TIME_TO_SLEEP_SHORT)
+            inputCidadeCorrente.send_keys(Keys.ENTER)
+            print('Selecionada cidade de Corrente com sucesso.')
+            print(espaco)
+
+            # Preecnendo o campo Lagadouro
+            print('Preenchendo o campo Lagadouro.')
+            print(espaco)
+            inputLagadouro = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[7]/div[2]/md-input-container/input')  # noqa
+            inputLagadouro.send_keys(pessoa["endereco"])
+            print('Lagadouro preenchido com sucesso.')
+            print(espaco)
+
+            # preenchendo o campo Bairro
+            print('Preenchendo o campo Bairro.')
+            print(espaco)
+
+            inputBairro = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[8]/div[2]/md-input-container/input')  # noqa
+            inputBairro.send_keys(pessoa["bairro"])
+            sleep(TIME_TO_SLEEP_SHORT)
+            print('Bairro preenchido com sucesso.')
+            print(espaco)
+
+            # selecionando o Opção Piaui
+            print('Selecionando o estado do aluno.')
+            inputEstado = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[9]/div[1]/md-select')  # noqa
+            inputEstado.click()
+            print(espaco)
+
+            # selecionando o estado Piaui
+            inputEstadoPiaui = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[13]/md-select-menu/md-content/md-option[19]')
+            inputEstadoPiaui.send_keys(Keys.ENTER)
+            print('Selecionado o estado Piaui do aluno.')
+            print(espaco)
+
+            # Selecionando o Opção Cidade
+            print('Selecionando a cidade do aluno.')
+            inputCidade = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[9]/div[2]/md-input-container/md-select')  # noqa
+            inputCidade.click()
+            print(espaco)
+
+            # selecionando a cidade de Corrente
+            inputCidadeCorrente = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[14]/md-select-menu/md-content/md-option[65]')
+            inputCidadeCorrente.send_keys(Keys.ENTER)
+            print('Selecionada cidade de Corrente com sucesso.')
+            print(espaco)
+
+            # Selecionando a Opção Zona
+            print('Selecionando a zona do aluno.')
+            inputZona = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[9]/div[3]/md-input-container/md-select')
+            inputZona.click()
+            print(espaco)
+
+            # Selecionando a zona urbana
+            inputZonaUrbana = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[15]/md-select-menu/md-content/md-option[1]')
+            inputZonaUrbana.send_keys(Keys.ENTER)
+            print('Selecionada a zona urbana com sucesso.')
+            print(espaco)
+
+            # Selecionando a Opção Tipo de Residencia
+            print('Selecionando o tipo de residencia do aluno.')
+            inputLoc = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[9]/div[4]/md-input-container/md-select')  # noqa
+            inputLoc.click()
+
+            # Selecionando não esta em area diferente
+            inputNaoLoc = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[16]/md-select-menu/md-content/md-option[1]')
+            inputNaoLoc.send_keys(Keys.ENTER)
+
+            # Clicando no Botão Avançar
+            print('Clicando no botão avançar.')
+            print(espaco)
+            inputAvancar = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[13]/div[2]/a')
+            sleep(TIME_TO_SLEEP_SHORT)
+            inputAvancar.click()
+
+            # Clicando no Botão Cadastrar Aluno
+            print('Clicando no botão cadastrar aluno.')
+            print(espaco)
+            inputCadastrarAluno = encontrarElemento(
+                browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/div/div/div/div/div/div/div[4]/div/div[4]/a')
+
+            # inputCadastrarAluno.click()
+            print('Aluno cadastrado com sucesso.')
+            print(espaco)
+
+            sleep(TIME_TO_SLEEP_SHORT)
+
+            # Cadastrando Proximo aluno
+            print('Cadastrando proximo aluno.')
+            print(espaco)
+            print('Direcionando para a pagina de Cadastro do aluno.')
+            url('https://portal.seduc.pi.gov.br/#!/aluno/cadastro')
+
+            sleep(TIME_TO_SLEEP_MEDIAN)
 
     print('Ultima pessoa cadastrada!')
     print('Fim!')
@@ -246,407 +440,3 @@ if __name__ == '__main__':
     sleep(TIME_TO_SLEEP_SHORT)
 
     cadastroAluno()
-
-    # for pessoa in pessoas:
-    #     print(f'Cadastrando pessoa {pessoa["nome"]} do CPF {pessoa["cpf"]}')
-    #     # Coloca valor na compo Nome
-    #     inputName = encontrarElemento(
-    #         browser, TIME_TO_SLEEP_MEDIAN, By.XPATH, '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[1]/div[1]/md-input-container/input')  # noqa
-    #     inputName.send_keys(pessoa["nome"])
-
-    #     sleep(TIME_TO_SLEEP_SHORT)
-
-    #     # Coloca valor na compo CPF
-    #     inputCPF = WebDriverWait(
-    #         browser, TIME_TO_SLEEP_MEDIAN
-    #     ).until(
-    #         EC.presence_of_element_located(
-    #             (By.XPATH,
-    #              '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[1]/div[2]/md-input-container/input')  # noqa
-    #         )
-    #     )
-    #     inputCPF.send_keys(pessoa["cpf"])
-
-    #     inputCPF.send_keys(Keys.TAB)
-
-    #     sleep(TIME_TO_SLEEP_SHORT)
-
-    #     # Verifca se o CPF já esta cadastrado no sistema
-    #     # Coloca valor na compo CPF
-    #     try:
-    #         inputExistente = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[8]/md-dialog')
-    #             )
-    #         )
-    #         print('CPF já cadastrado no sistema')
-    #         inputExistente.send_keys(Keys.ESCAPE)
-    #         inputName.clear()
-    #         inputCPF.clear()
-
-    #         print(f'Pulando pessoa {pessoa["nome"]}')
-
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #     except TimeoutException:
-    #         print('CPF não cadastrado no sistema')
-
-    #         inputDataNasc = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[2]/div[2]/md-input-container/input')  # noqa
-    #             )
-    #         )
-    #         inputDataNasc.send_keys(pessoa["data_nascimento"])
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         # selecionando o Cor
-    #         inputCor = WebDriverWait(
-    #             browser, 3600
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[3]/div[1]/md-select')  # noqa
-    #             )
-    #         )
-    #         inputCor.click()
-    #         # selecionando Não declarado
-    #         inputNaoDecla = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[8]/md-select-menu/md-content/md-option[1]')
-    #             )
-    #         )
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         inputNaoDecla.send_keys(Keys.ENTER)
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         # selecionando o Sexo
-    #         inputSexo = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[3]/div[2]/md-select')  # noqa
-    #             )
-    #         )
-    #         inputSexo.click()
-    #         print(inputSexo.text)
-    #         valorSexo = pessoa["sexo"].lower()
-    #         if valorSexo == 'masculino':
-    #             # selecionando Sexo Masculino
-    #             inputSexo = WebDriverWait(
-    #                 browser, TIME_TO_SLEEP_MEDIAN
-    #             ).until(
-    #                 EC.presence_of_element_located(
-    #                     (By.XPATH,
-    #                      '/html/body/div[9]/md-select-menu/md-content/md-option[1]')
-    #                 )
-    #             )
-    #         else:
-    #             # selecionando Sexo Feminino
-    #             inputSexo = WebDriverWait(
-    #                 browser, TIME_TO_SLEEP_MEDIAN
-    #             ).until(
-    #                 EC.presence_of_element_located(
-    #                     (By.XPATH,
-    #                      '/html/body/div[9]/md-select-menu/md-content/md-option[2]')
-    #                 )
-    #             )
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         inputSexo.send_keys(Keys.ENTER)
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         # selecionando o Nacionalidade
-    #         inputNacionalidade = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[5]/div[1]/md-select')  # noqa
-    #             )
-    #         )
-    #         inputNacionalidade.click()
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         # selecionando a nacionalidade brasileira
-    #         inputNaturalidadeBrasileira = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[10]/md-select-menu/md-content/md-option[1]')
-    #             )
-    #         )
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         inputNaturalidadeBrasileira.send_keys(Keys.ENTER)
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         # selecionando o Naturalidade
-    #         inputNacionalidade = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[5]/div[2]/md-select')  # noqa
-    #             )
-    #         )
-    #         inputNacionalidade.click()
-    #         # selecionando a nacionalidade piauiense
-    #         inputNacionalidadePiaui = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[11]/md-select-menu/md-content/md-option[19]')
-    #             )
-    #         )
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         inputNacionalidadePiaui.send_keys(Keys.ENTER)
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         # selecionando o Naturalidade Cidade
-    #         inputNaturalidadeCidade = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[5]/div[3]/md-select')  # noqa
-    #             )
-    #         )
-    #         inputNaturalidadeCidade.click()
-    #         # selecionando a nacionalidade piauiense
-    #         # TODO: verificar se a cidade existe
-    #         inputNacionalidadeCorrente = WebDriverWait(
-    #             browser, 3600
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[12]/md-select-menu/md-content/md-option[65]')
-    #             )
-    #         )
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         inputNacionalidadeCorrente.send_keys(Keys.ENTER)
-    #         print('Cidade selecionada')
-    #         print(inputNacionalidadeCorrente.text)
-    #         selecionacorrente = inputNacionalidadeCorrente.text
-
-    #         if (selecionacorrente == 'CORRENTE'):
-    #             print('Cidade encontrada de primeira')
-
-    #         else:
-    #             print('Cidade não encontrada, selecionando outra')
-    #             idcidade = 187
-    #             while (selecionacorrente != 'CORRENTE'):
-    #                 inputNaturalidadeCidade = WebDriverWait(
-    #                     browser, TIME_TO_SLEEP_MEDIAN
-    #                 ).until(
-    #                     EC.presence_of_element_located(
-    #                         (By.XPATH,
-    #                         '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[5]/div[3]/md-select')  # noqa
-    #                     )
-    #                 )
-    #                 inputNaturalidadeCidade.click()
-    #                 idcidade = idcidade + 1
-    #                 inputNacionalidadeCorrente = WebDriverWait(
-    #                     browser, TIME_TO_SLEEP_MEDIAN
-    #                 ).until(
-    #                     EC.presence_of_element_located(
-    #                         (By.ID, 'select_option_' + str(idcidade))
-    #                     )
-    #                 )
-    #                 sleep(TIME_TO_SLEEP_MEDIAN)
-    #                 inputNacionalidadeCorrente.send_keys(Keys.ENTER)
-    #                 selecionacorrente = inputNacionalidadeCorrente.text
-    #                 print('Cidade selecionada')
-    #                 print(inputNacionalidadeCorrente.text)
-
-    #         inputLagradouro = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[7]/div[2]/md-input-container/input')  # noqa
-    #             )
-    #         )
-    #         inputLagradouro.send_keys(pessoa["endereco"])
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         inputBairro = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[8]/div[2]/md-input-container/input')  # noqa
-    #             )
-    #         )
-    #         inputBairro.send_keys(pessoa["bairro"])
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         # selecionando o estado
-    #         inputEstado = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[9]/div[1]/md-select')  # noqa
-    #             )
-    #         )
-    #         inputEstado.click()
-    #         # selecionando o estado PI
-    #         inputEstadoPiuai = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[13]/md-select-menu/md-content/md-option[19]')
-    #             )
-    #         )
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         inputEstadoPiuai.send_keys(Keys.ENTER)
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         # selecionando o Municipio
-    #         inputMunicipio = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[9]/div[2]/md-input-container/md-select')  # noqa
-    #             )
-    #         )
-    #         inputMunicipio.click()
-    #         # selecionando Corrente
-    #         # TODO VERIFICANDO SE O MUNICIPIO É CORRENTE
-    #         inputCorrente = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[14]/md-select-menu/md-content/md-option[65]')
-    #             )
-    #         )
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         inputCorrente.send_keys(Keys.ENTER)
-    #         print('Cidade selecionada')
-    #         print(inputCorrente.text)
-    #         selecionacorrente = inputCorrente.text
-
-    #         if (selecionacorrente == 'CORRENTE'):
-    #             print('Cidade encontrada de primeira')
-
-    #         else:
-    #             print('Cidade não encontrada, selecionando outra')
-    #             idcidade = 411
-    #             while (selecionacorrente != 'CORRENTE'):
-    #                 inputCorrente = WebDriverWait(
-    #                     browser, TIME_TO_SLEEP_MEDIAN
-    #                 ).until(
-    #                     EC.presence_of_element_located(
-    #                         (By.XPATH,
-    #                         '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[9]/div[2]/md-input-container/md-select')  # noqa
-    #                     )
-    #                 )
-    #                 inputCorrente.click()
-    #                 idcidade = idcidade + 1
-    #                 inputCorrente = WebDriverWait(
-    #                     browser, TIME_TO_SLEEP_MEDIAN
-    #                 ).until(
-    #                     EC.presence_of_element_located(
-    #                         (By.ID, 'select_option_' + str(idcidade))
-    #                     )
-    #                 )
-    #                 sleep(TIME_TO_SLEEP_MEDIAN)
-    #                 inputCorrente.send_keys(Keys.ENTER)
-    #                 selecionacorrente = inputCorrente.text
-    #                 print('Cidade selecionada')
-    #                 print(inputCorrente.text)
-
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         # selecionando o Zona
-    #         inputZona = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[9]/div[3]/md-input-container/md-select')  # noqa
-    #             )
-    #         )
-    #         inputZona.click()
-    #         # selecionando Corrente
-    #         inputZonaUrbana = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[15]/md-select-menu/md-content/md-option[1]')
-    #             )
-    #         )
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         inputZonaUrbana.send_keys(Keys.ENTER)
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         # selecionando o Localização diferente
-    #         inputLoc = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[9]/div[4]/md-input-container/md-select')  # noqa
-    #             )
-    #         )
-    #         inputLoc.click()
-    #         # selecionando não esta em area diferente
-    #         inputNaoLoc = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[16]/md-select-menu/md-content/md-option[1]')
-    #             )
-    #         )
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         inputNaoLoc.send_keys(Keys.ENTER)
-    #         sleep(TIME_TO_SLEEP_SHORT)
-
-    #         # Clica no botão de avançar
-    #         selecButtonAvancaAluno = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/form/div/div/div/div/div/div[13]/div[2]/a')  # noqa
-    #             )
-    #         )
-    #         selecButtonAvancaAluno.click()
-    #         sleep(TIME_TO_SLEEP_SHORT)
-
-    #         # clicando no botão de casdastrar
-    #         selecButtonAvancaAluno = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH,
-    #                  '/html/body/div[2]/div/section/div/div[2]/div/div/div/div/div/div/div[4]/div/div[4]/a')  # noqa
-    #             )
-    #         )
-    #         selecButtonAvancaAluno.click()
-    #         sleep(TIME_TO_SLEEP_SHORT)
-    #         print('Indo para o Proximo cadastro')
-    #         sleep(TIME_TO_SLEEP_MEDIAN)
-    #         browser.get(
-    #             'https://portal.seduc.pi.gov.br/#!/escola/dashboard')
-
-    #         sleep(TIME_TO_SLEEP_SHORT)
-
-    #         # Clicar no botão de cadastro Aluno
-    #         selecButtonCadastroAluno = WebDriverWait(
-    #             browser, TIME_TO_SLEEP_MEDIAN
-    #         ).until(
-    #             EC.presence_of_element_located(
-    #                 (By.XPATH, '//*[@id="slide-out"]/li[11]/a')
-    #             )
-    #         )
-
-    #         selecButtonCadastroAluno.click()
-    #         print('Cadastrando o proximo aluno')
-
-    # print('Ultima pessoa cadastrada!')
-    # print('Fim!')
-    # browser.quit()
